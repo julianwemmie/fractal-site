@@ -24,6 +24,7 @@ PROTECTED_PATTERNS=(
     "\.ssh/"
     "\.aws/"
     "\.gnupg/"
+    "\.claude/hooks"
 )
 
 for pattern in "${PROTECTED_PATTERNS[@]}"; do

@@ -29,10 +29,6 @@ DANGEROUS_PATTERNS=(
     "pkill -9"
     "mv /* "
     "mv / "
-    "wget.*|.*sh"
-    "curl.*|.*sh"
-    "curl.*|.*bash"
-    "wget.*|.*bash"
 )
 
 for pattern in "${DANGEROUS_PATTERNS[@]}"; do
@@ -52,6 +48,15 @@ if echo "$COMMAND" | grep -qE "rm.*\.\." || echo "$COMMAND" | grep -qE "rm.*/Use
     echo "Command: $COMMAND" >&2
     echo "" >&2
     echo "If you really need to run this, tell Claude explicitly to proceed." >&2
+    exit 2
+fi
+
+# Protect .claude/hooks directory from deletion
+if echo "$COMMAND" | grep -qE "rm.*\.claude/hooks"; then
+    echo "BLOCKED: Attempting to delete .claude/hooks directory or files" >&2
+    echo "Command: $COMMAND" >&2
+    echo "" >&2
+    echo "The hooks directory contains safety scripts. If you really need to delete it, tell Claude explicitly." >&2
     exit 2
 fi
 
