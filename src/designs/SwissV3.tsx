@@ -58,7 +58,7 @@ export default function SwissV3() {
         {/* Bottom action grid */}
         <div className="grid grid-cols-3 gap-6">
           <a
-            href="/blog"
+            href="/blog/how-i-made-this-site-using-claude"
             className="bg-black text-orange-500 p-6 hover:opacity-80 transition-opacity"
           >
             <p className="text-xs font-bold uppercase tracking-widest mb-2">Read</p>

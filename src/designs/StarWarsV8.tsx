@@ -117,7 +117,7 @@ export default function StarWarsV8() {
         {/* Action buttons */}
         <div className="flex gap-8 flex-wrap justify-center">
           <a
-            href="/blog"
+            href="/blog/how-i-made-this-site-using-claude"
             className="px-8 py-4 border-2 border-yellow-300 text-yellow-300 uppercase font-bold tracking-widest hover:bg-yellow-300 hover:text-black transition-all"
             style={{
               boxShadow: '0 0 15px rgba(253, 230, 71, 0.3)',

@@ -99,7 +99,7 @@ export default function GrungeV6() {
 
             {/* Action links */}
             <a
-              href="/blog"
+              href="/blog/how-i-made-this-site-using-claude"
               className="block border-4 border-black bg-white p-4 hover:bg-black hover:text-white transition-colors group"
             >
               <p className="text-xs font-black text-black group-hover:text-white uppercase tracking-widest mb-2">
