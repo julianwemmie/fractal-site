@@ -29,10 +29,6 @@ DANGEROUS_PATTERNS=(
     "pkill -9"
     "mv /* "
     "mv / "
-    "wget.*|.*sh"
-    "curl.*|.*sh"
-    "curl.*|.*bash"
-    "wget.*|.*bash"
 )
 
 for pattern in "${DANGEROUS_PATTERNS[@]}"; do
