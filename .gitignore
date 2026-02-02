@@ -48,3 +48,6 @@ pnpm-debug.log*
 # Misc
 .cache/
 .eslintcache
+
+# Vite cache
+.vite/
