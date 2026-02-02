@@ -50,7 +50,7 @@ export default function MinimalV10() {
             </h2>
             <div className="space-y-3">
               <a
-                href="/blog"
+                href="/blog/how-i-made-this-site-using-claude"
                 className="block text-base font-light opacity-80 hover:opacity-100 transition-opacity"
               >
                 Essays

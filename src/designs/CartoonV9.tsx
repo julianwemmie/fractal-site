@@ -75,7 +75,7 @@ export default function CartoonV9() {
               <h3 className="text-2xl font-black text-pink-600 mb-4">Where you can find me</h3>
               <div className="space-y-3">
                 <a
-                  href="/blog"
+                  href="/blog/how-i-made-this-site-using-claude"
                   className="block px-4 py-2 bg-white border-3 border-pink-400 text-pink-600 font-bold hover:bg-pink-100 transition-all text-center"
                   style={{
                     boxShadow: '2px 2px 0px rgba(0,0,0,0.1)',

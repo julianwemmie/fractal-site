@@ -130,7 +130,7 @@ export default function EditorialV7() {
 
           <div className="grid md:grid-cols-3 gap-12 ml-0 md:ml-32">
             <a
-              href="/blog"
+              href="/blog/how-i-made-this-site-using-claude"
               className="group space-y-4 cursor-pointer"
             >
               <h3 className="text-sm font-black uppercase tracking-widest text-gray-600 group-hover:text-black transition-colors">

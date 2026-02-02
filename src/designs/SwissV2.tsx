@@ -36,7 +36,7 @@ export default function SwissV2() {
           <div className="bg-black/80 text-white p-8">
             <p className="text-xs font-bold uppercase tracking-widest mb-4">Links</p>
             <div className="space-y-2">
-              <a href="/blog" className="block font-bold hover:opacity-70">
+              <a href="/blog/how-i-made-this-site-using-claude" className="block font-bold hover:opacity-70">
                 → Essays
               </a>
               <a href="https://github.com/julianwemmie" target="_blank" rel="noopener noreferrer" className="block font-bold hover:opacity-70">

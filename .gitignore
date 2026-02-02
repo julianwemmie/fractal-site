@@ -51,3 +51,6 @@ pnpm-debug.log*
 
 # Vite cache
 .vite/
+
+# Local Netlify folder
+.netlify
