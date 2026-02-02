@@ -2,8 +2,14 @@ import { Buffer } from 'buffer'
 import matter from 'gray-matter'
 
 // Polyfill Buffer for gray-matter in browser
+declare global {
+  interface Window {
+    Buffer: typeof Buffer
+  }
+}
+
 if (typeof window !== 'undefined') {
-  window.Buffer = Buffer
+  (window as Window & typeof globalThis).Buffer = Buffer
 }
 
 export interface BlogPost {
@@ -19,7 +25,7 @@ interface ParsedPost extends BlogPost {
 }
 
 // Import all markdown files from content/posts
-const postFiles = import.meta.glob('/content/posts/*.md', {
+const postFiles = import.meta.glob<string>('/content/posts/*.md', {
   eager: true,
   query: '?raw',
   import: 'default',

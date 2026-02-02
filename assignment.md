@@ -23,3 +23,4 @@ A couple different phases.
 
 - I'm at a point where I can start making some decisions about tech stack. I think the two natural options are either nextjs or vite. Nextjs comes with a lot of batteries included and it would be dead simple to host with vercel, but I kinda have to give in to the nextjs ecosystem and it might be overkill for my site. Vite is simpler, but might need some work with seo and server side rendering etc. I'm not really concerned with seo right now, so I think I'll go with vite.
 - One requirement I have for the site is that it should be as simple as possible to publish posts. I'm thinking we have some sort of markdown processor that converts it to html, then we can serve that with vite. So then I can write in whatever markdown editor I want and that can be our post. 
+
