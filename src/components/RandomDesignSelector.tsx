@@ -32,17 +32,46 @@ const DESIGN_COLORS: Record<DesignKey, string> = {
   Minimal: 'bg-gray-100 border border-gray-300',
 }
 
+const STORAGE_KEY = 'unseenDesigns'
+
+function getNextDesign(): DesignKey {
+  // Get unseen designs from localStorage
+  let unseen: DesignKey[]
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    unseen = stored ? JSON.parse(stored) : [...DESIGN_KEYS]
+    // Validate that stored values are valid design keys
+    unseen = unseen.filter(d => DESIGN_KEYS.includes(d))
+    if (unseen.length === 0) {
+      unseen = [...DESIGN_KEYS]
+    }
+  } catch {
+    unseen = [...DESIGN_KEYS]
+  }
+
+  // Pick a random design from unseen list
+  const randomIndex = Math.floor(Math.random() * unseen.length)
+  const selected = unseen[randomIndex]
+
+  // Remove selected from unseen list
+  unseen.splice(randomIndex, 1)
+
+  // If list is now empty, reset for next cycle
+  if (unseen.length === 0) {
+    unseen = [...DESIGN_KEYS]
+  }
+
+  // Save updated list
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(unseen))
+
+  return selected
+}
+
 export default function RandomDesignSelector() {
-  const [selectedDesign, setSelectedDesign] = useState<DesignKey>('Vibrant')
+  const [selectedDesign, setSelectedDesign] = useState<DesignKey>(() => getNextDesign())
   const [isSpinning, setIsSpinning] = useState(true)
   const [showDesign, setShowDesign] = useState(false)
   const [debugOpen, setDebugOpen] = useState(false)
-
-  useEffect(() => {
-    // Pick a random design on mount
-    const randomDesign = DESIGN_KEYS[Math.floor(Math.random() * DESIGN_KEYS.length)]
-    setSelectedDesign(randomDesign)
-  }, [])
 
   // Keyboard shortcut: Press 'D' to toggle debug panel
   useEffect(() => {
