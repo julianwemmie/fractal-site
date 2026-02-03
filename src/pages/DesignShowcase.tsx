@@ -1,54 +1,54 @@
 import { useState } from 'react'
-import SwissV2 from '../designs/SwissV2'
-import SwissV3 from '../designs/SwissV3'
-import GrungeV6 from '../designs/GrungeV6'
-import EditorialV7 from '../designs/EditorialV7'
-import StarWarsV8 from '../designs/StarWarsV8'
-import CartoonV9 from '../designs/CartoonV9'
-import MinimalV10 from '../designs/MinimalV10'
+import Vibrant from '../designs/Vibrant'
+import Orange from '../designs/Orange'
+import Grunge from '../designs/Grunge'
+import Editorial from '../designs/Editorial'
+import StarWars from '../designs/StarWars'
+import Cartoon from '../designs/Cartoon'
+import Minimal from '../designs/Minimal'
 
 type DesignStyle = 'vibrant' | 'orange' | 'grunge' | 'editorial' | 'starwars' | 'cartoon' | 'minimal'
 
 const DESIGNS: Record<DesignStyle, { name: string; component: React.ComponentType; description: string; accent: string }> = {
   vibrant: {
     name: 'Vibrant Blocks',
-    component: SwissV2,
+    component: Vibrant,
     description: 'Color blocking with diagonal composition',
     accent: 'from-red-600 to-orange-600'
   },
   orange: {
     name: 'Orange Pattern',
-    component: SwissV3,
+    component: Orange,
     description: 'Hatching patterns and bold shapes',
     accent: 'from-orange-500 to-red-600'
   },
   grunge: {
     name: 'Grunge',
-    component: GrungeV6,
+    component: Grunge,
     description: 'Distressed, raw, high-contrast aesthetic',
     accent: 'from-gray-700 to-black'
   },
   editorial: {
     name: 'Editorial',
-    component: EditorialV7,
+    component: Editorial,
     description: 'Bold typography, spacious layout, editorial',
     accent: 'from-black to-gray-800'
   },
   starwars: {
     name: 'Star Wars',
-    component: StarWarsV8,
+    component: StarWars,
     description: 'Sci-fi futuristic, opening crawl, starfield',
     accent: 'from-yellow-300 to-yellow-400'
   },
   cartoon: {
     name: 'Cartoon',
-    component: CartoonV9,
+    component: Cartoon,
     description: 'Playful, hand-drawn, fun and friendly',
     accent: 'from-purple-400 to-pink-400'
   },
   minimal: {
     name: 'Minimal',
-    component: MinimalV10,
+    component: Minimal,
     description: 'Absolute minimalism, whitespace, refined',
     accent: 'from-gray-900 to-black'
   }

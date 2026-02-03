@@ -1,4 +1,4 @@
-export default function EditorialV7() {
+export default function Editorial() {
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Header section */}
@@ -36,7 +36,7 @@ export default function EditorialV7() {
                 Who I Am
               </h3>
               <p className="text-base leading-relaxed font-light">
-                Software engineer with a passion for building sustainable systems. Interested in systems thinking, permaculture, and exploring new technologies like Rust.
+                Software engineer with a passion for building sustainable systems. Interested in systems thinking, permaculture, and exploring new technologies.
               </p>
             </div>
 
@@ -82,7 +82,7 @@ export default function EditorialV7() {
                 <ul className="space-y-2 text-base leading-relaxed font-light">
                   <li>• AI-assisted development</li>
                   <li>• Systems thinking</li>
-                  <li>• Rust programming</li>
+                  <li>• TypeScript & Python</li>
                 </ul>
               </div>
             </div>
@@ -160,7 +160,7 @@ export default function EditorialV7() {
                 Location
               </h3>
               <p className="text-base leading-relaxed font-light">
-                Based in the Pacific Northwest, currently exploring remote opportunities and collaborations.
+                Based in NYC, currently exploring remote opportunities and collaborations.
               </p>
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function EditorialV7() {
       <div className="bg-gray-100 px-8 md:px-16 py-16 mt-20">
         <div className="max-w-6xl mx-auto">
           <p className="text-sm text-gray-600 font-light">
-            © 2024 Julian Wemmie. Editorial design inspired by contemporary portfolio aesthetics.
+            © {new Date().getFullYear()} Julian Wemmie. Editorial design inspired by contemporary portfolio aesthetics.
           </p>
         </div>
       </div>

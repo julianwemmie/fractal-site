@@ -1,4 +1,4 @@
-export default function CartoonV9() {
+export default function Cartoon() {
   return (
     <div className="min-h-screen bg-yellow-50 text-gray-800 relative overflow-hidden">
       {/* Doodle elements background */}
@@ -60,7 +60,7 @@ export default function CartoonV9() {
               <ul className="space-y-2 font-medium text-gray-700">
                 <li>✨ AI-assisted development</li>
                 <li>🌱 Systems thinking</li>
-                <li>🦀 Rust programming</li>
+                <li>💻 TypeScript & Python</li>
                 <li>🌍 Permaculture</li>
                 <li>📝 Digital gardens</li>
               </ul>
@@ -140,7 +140,7 @@ export default function CartoonV9() {
         {/* Footer with doodles */}
         <div className="mt-16 pt-8 border-t-4 border-gray-400 text-center space-y-4">
           <p className="text-sm font-bold text-gray-600 uppercase tracking-widest">
-            Made with ❤️ in the Pacific Northwest
+            Made with ❤️ in NYC
           </p>
           <div className="flex justify-center gap-4">
             <div className="w-4 h-4 rounded-full bg-blue-400" />

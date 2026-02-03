@@ -1,4 +1,4 @@
-export default function SwissV3() {
+export default function Orange() {
   return (
     <div className="min-h-screen bg-orange-500 relative overflow-hidden">
       {/* Hatching pattern background */}
@@ -32,8 +32,8 @@ export default function SwissV3() {
       <div className="relative z-10 max-w-7xl mx-auto px-8 h-screen flex flex-col justify-between py-16">
         {/* Header info */}
         <div className="space-y-4">
-          <p className="text-sm font-bold text-black uppercase tracking-widest">Web Engineer</p>
-          <p className="text-xs text-black/80">Pacific Northwest / 2024</p>
+          <p className="text-sm font-bold text-black uppercase tracking-widest">Software Engineer</p>
+          <p className="text-xs text-black/80">NYC / {new Date().getFullYear()}</p>
         </div>
 
         {/* Main title overlaid */}
