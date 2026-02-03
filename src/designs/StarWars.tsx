@@ -1,4 +1,4 @@
-export default function StarWarsV8() {
+export default function StarWars() {
   return (
     <div className="min-h-screen bg-black text-yellow-300 relative overflow-hidden font-serif">
       {/* Starfield background */}
@@ -52,7 +52,7 @@ export default function StarWarsV8() {
             }}
           >
             <p className="text-lg md:text-xl font-light">
-              An engineer of sustainable systems and digital gardens emerges from the Pacific Northwest...
+              An engineer of sustainable systems and digital gardens emerges from New York City...
             </p>
             <p className="text-base md:text-lg font-light opacity-90">
               Exploring the intersection of AI tools and developer experience, this software engineer seeks to build technology that serves the greater good.
@@ -92,8 +92,9 @@ export default function StarWarsV8() {
             <h3 className="text-lg font-bold uppercase tracking-widest mb-4">Languages</h3>
             <ul className="space-y-2 text-sm font-light">
               <li>» TypeScript</li>
-              <li>» Rust</li>
               <li>» Python</li>
+              <li>» Java</li>
+              <li>» C#</li>
             </ul>
           </div>
 
@@ -141,7 +142,7 @@ export default function StarWarsV8() {
         {/* Location */}
         <div className="text-center space-y-2 border-t-2 border-yellow-300/30 pt-8">
           <p className="text-sm uppercase tracking-widest opacity-70">Current Station</p>
-          <p className="text-2xl font-bold">Pacific Northwest Outpost</p>
+          <p className="text-2xl font-bold">NYC Station</p>
         </div>
       </div>
 

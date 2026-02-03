@@ -1,4 +1,4 @@
-export default function SwissV2() {
+export default function Vibrant() {
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Geometric color blocks background */}
@@ -16,11 +16,11 @@ export default function SwissV2() {
             <h1 className="text-8xl font-black text-white leading-tight mb-4">
               JULIAN
             </h1>
-            <p className="text-white text-lg font-bold">Digital Gardener & Engineer</p>
+            <p className="text-white text-lg font-bold">Software Engineer</p>
           </div>
           <div className="bg-white/95 p-6 self-start">
             <p className="text-xs font-bold uppercase tracking-widest text-black mb-3">Location</p>
-            <p className="text-lg font-bold text-black">Pacific NW</p>
+            <p className="text-lg font-bold text-black">NYC</p>
           </div>
         </div>
 
@@ -48,7 +48,7 @@ export default function SwissV2() {
 
         {/* Bottom - Interests */}
         <div className="grid grid-cols-3 gap-4">
-          {['Permaculture', 'Rust', 'Systems', 'AI', 'Gardens', 'Solarpunk'].map((item) => (
+          {['Permaculture', 'TypeScript', 'Systems', 'AI', 'Gardens', 'Solarpunk'].map((item) => (
             <div key={item} className="bg-black/70 text-white p-4">
               <p className="text-sm font-bold">{item}</p>
             </div>

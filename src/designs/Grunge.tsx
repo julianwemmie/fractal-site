@@ -1,4 +1,4 @@
-export default function GrungeV6() {
+export default function Grunge() {
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-hidden font-mono">
       {/* Grainy noise texture */}
@@ -24,7 +24,7 @@ export default function GrungeV6() {
               JULIAN
             </h1>
             <p className="text-sm font-bold text-black uppercase tracking-widest">
-              &gt; software engineer // digital gardener
+              &gt; software engineer
             </p>
           </div>
 
@@ -32,11 +32,11 @@ export default function GrungeV6() {
           <div className="grid grid-cols-2 gap-4">
             <div className="border-4 border-black p-4 bg-black text-white">
               <p className="text-xs font-bold uppercase tracking-widest mb-2">Location</p>
-              <p className="text-lg font-black">PACIFIC NW</p>
+              <p className="text-lg font-black">NYC</p>
             </div>
             <div className="border-4 border-black p-4 bg-white">
               <p className="text-xs font-bold uppercase tracking-widest text-black mb-2">Year</p>
-              <p className="text-lg font-black text-black">2024</p>
+              <p className="text-lg font-black text-black">{new Date().getFullYear()}</p>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function GrungeV6() {
                   'AI-assisted dev',
                   'Systems design',
                   'Permaculture',
-                  'Rust',
+                  'TypeScript',
                   'Digital gardens',
                   'Solarpunk',
                 ].map((item) => (
@@ -143,7 +143,7 @@ export default function GrungeV6() {
 
         {/* Footer */}
         <div className="border-t-4 border-black pt-4 text-center text-xs font-bold text-black uppercase tracking-widest">
-          <p>© 2024 JULIAN WEMMIE / GRUNGE AESTHETIC / RAW & INTENTIONAL</p>
+          <p>© {new Date().getFullYear()} JULIAN WEMMIE / GRUNGE AESTHETIC / RAW & INTENTIONAL</p>
         </div>
       </div>
 

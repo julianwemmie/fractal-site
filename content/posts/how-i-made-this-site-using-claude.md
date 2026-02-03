@@ -4,7 +4,7 @@ date: 2026-02-02
 excerpt: Software engineer exploring AI and sustainable systems. Learning in public, building tools that matter.
 ---
 
-*I kept log of my planning/thoughts during this project, and used it create blog post with Claude's help.*
+*I kept a log of my planning/thoughts during this project (see [assignment.md](https://github.com/julianwemmie/fractal-site/blob/main/assignment.md)) and used it to create this blog post with Claude's help.*
 
 ---
 

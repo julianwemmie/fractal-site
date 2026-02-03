@@ -1,4 +1,4 @@
-export default function MinimalV10() {
+export default function Minimal() {
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Header */}
@@ -37,7 +37,7 @@ export default function MinimalV10() {
               <p>AI-assisted development</p>
               <p>Systems thinking</p>
               <p>Permaculture</p>
-              <p>Rust</p>
+              <p>TypeScript</p>
               <p>Digital gardens</p>
               <p>Sustainable futures</p>
             </div>
@@ -67,7 +67,7 @@ export default function MinimalV10() {
                 href="#"
                 className="block text-base font-light opacity-80 hover:opacity-100 transition-opacity"
               >
-                Location: Pacific Northwest
+                Location: NYC
               </a>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function MinimalV10() {
       {/* Footer */}
       <div className="max-w-3xl mx-auto px-6 md:px-12 py-32 border-t border-black/10">
         <p className="text-xs font-light opacity-50 tracking-widest">
-          © 2024
+          © {new Date().getFullYear()}
         </p>
       </div>
 
