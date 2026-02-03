@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import DesignWheel from './DesignWheel'
 import Vibrant from '../designs/Vibrant'
 import Orange from '../designs/Orange'
@@ -72,6 +72,7 @@ export default function RandomDesignSelector() {
   const [isSpinning, setIsSpinning] = useState(true)
   const [showDesign, setShowDesign] = useState(false)
   const [debugOpen, setDebugOpen] = useState(false)
+  const debugRef = useRef<HTMLDivElement>(null)
 
   // Keyboard shortcut: Press 'D' to toggle debug panel
   useEffect(() => {
@@ -85,6 +86,19 @@ export default function RandomDesignSelector() {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
+
+  // Close debug panel when clicking outside
+  useEffect(() => {
+    if (!debugOpen) return
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (debugRef.current && !debugRef.current.contains(e.target as Node)) {
+        setDebugOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [debugOpen])
 
   const handleSpinComplete = () => {
     setIsSpinning(false)
@@ -119,7 +133,7 @@ export default function RandomDesignSelector() {
       </div>
 
       {/* Debug Overlay */}
-      <div className="fixed bottom-4 left-4 z-[100]">
+      <div ref={debugRef} className="fixed bottom-4 left-4 z-[100]">
         {/* Toggle Button */}
         <button
           onClick={() => setDebugOpen(prev => !prev)}
