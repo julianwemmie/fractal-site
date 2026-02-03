@@ -155,14 +155,14 @@ export default function StarWars() {
         @keyframes crawl {
           0% {
             opacity: 1;
-            transform: perspective(800px) rotateX(80deg) translateY(300px) translateZ(0);
+            transform: perspective(800px) rotateX(50deg) translateY(300px) translateZ(0);
           }
           85% {
             opacity: 1;
           }
           100% {
             opacity: 0;
-            transform: perspective(800px) rotateX(80deg) translateY(-150vh) translateZ(0);
+            transform: perspective(800px) rotateX(50deg) translateY(-150vh) translateZ(0);
           }
         }
 
