@@ -37,11 +37,11 @@ function parsePost(filename: string, rawContent: string): ParsedPost {
   const { data, content } = matter(rawContent)
 
   // Store raw date for sorting
-  const rawDate = String(data.date)
+  // gray-matter auto-parses YAML dates into Date objects
+  const dateObj = data.date instanceof Date ? data.date : new Date(data.date)
+  const rawDate = dateObj.toISOString().split('T')[0]
 
-  // Format date for display (parse as UTC to avoid timezone shifts)
-  const [year, month, day] = rawDate.split('-').map(Number)
-  const dateObj = new Date(Date.UTC(year, month - 1, day))
+  // Format date for display
   const formattedDate = dateObj.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
