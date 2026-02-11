@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import { blogPosts } from '../data/posts'
 
-function GenerativeBackground() {
+export function GenerativeBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -23,31 +23,36 @@ function GenerativeBackground() {
     const w = () => window.innerWidth
     const h = () => window.innerHeight
 
-    const lines: { x: number; y: number; vx: number; vy: number; color: string; width: number; points: { x: number; y: number }[] }[] = []
+    const lines: { x: number; y: number; vx: number; vy: number; color: string; width: number; phase: number; curl: number; oscillate: number; points: { x: number; y: number }[] }[] = []
 
     const colors = [
-      'rgba(45, 74, 43, 0.07)',
-      'rgba(45, 74, 43, 0.05)',
+      'rgba(45, 74, 43, 0.10)',
+      'rgba(45, 74, 43, 0.08)',
+      'rgba(201, 166, 144, 0.12)',
       'rgba(201, 166, 144, 0.09)',
-      'rgba(201, 166, 144, 0.06)',
-      'rgba(168, 184, 178, 0.07)',
+      'rgba(168, 184, 178, 0.10)',
     ]
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 20; i++) {
       lines.push({
         x: Math.random() * w(),
         y: Math.random() * h(),
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
         color: colors[Math.floor(Math.random() * colors.length)],
-        width: Math.random() * 2 + 0.5,
+        width: Math.random() * 1.5 + 0.5,
+        phase: Math.random() * Math.PI * 2,
+        curl: (Math.random() < 0.5 ? -1 : 1) * (0.002 + Math.random() * 0.003),
+        oscillate: 0.2 + Math.random() * 0.3,
         points: [],
       })
     }
 
-    const noise = (x: number, y: number, t: number) => {
-      return Math.sin(x * 0.005 + t) * Math.cos(y * 0.004 + t * 0.7) +
-        Math.sin((x + y) * 0.003 + t * 0.5) * 0.5
+    const noise = (x: number, y: number, t: number, phase: number) => {
+      return Math.sin(x * 0.002 + t + phase) * Math.cos(y * 0.0015 + t * 0.7) +
+        Math.sin((x + y) * 0.001 + t * 0.5) * 0.5 +
+        Math.sin(x * 0.003 - y * 0.002 + t * 1.3 + phase) * 0.4 +
+        Math.cos(x * 0.001 + y * 0.003 + t * 0.9) * 0.3
     }
 
     let t = 0
@@ -55,42 +60,69 @@ function GenerativeBackground() {
 
     const draw = () => {
       ctx.clearRect(0, 0, w(), h())
-      t += 0.002
+      ctx.save()
+      ctx.translate(-window.scrollX, -window.scrollY)
+      t += 0.001
 
       for (const line of lines) {
-        const angle = noise(line.x, line.y, t) * Math.PI * 2
-        line.vx += Math.cos(angle) * 0.03
-        line.vy += Math.sin(angle) * 0.03
-        line.vx *= 0.98
-        line.vy *= 0.98
+        const angle = noise(line.x, line.y, t, line.phase) * Math.PI * 2
+        line.vx += Math.cos(angle) * 0.008
+        line.vy += Math.sin(angle) * 0.008
+        // Gentle perpendicular curl for broad sweeping curves
+        const speed = Math.sqrt(line.vx * line.vx + line.vy * line.vy)
+        if (speed > 0.01) {
+          const perpX = -line.vy / speed
+          const perpY = line.vx / speed
+          const curlStrength = line.curl + Math.sin(t * 2 + line.phase) * line.oscillate * 0.003
+          line.vx += perpX * curlStrength
+          line.vy += perpY * curlStrength
+        }
+        line.vx *= 0.998
+        line.vy *= 0.998
         line.x += line.vx
         line.y += line.vy
 
         line.points.push({ x: line.x, y: line.y })
-        if (line.points.length > 100) line.points.shift()
+        if (line.points.length > 350) line.points.shift()
 
-        if (line.x < -50) line.x = w() + 50
-        if (line.x > w() + 50) line.x = -50
-        if (line.y < -50) line.y = h() + 50
-        if (line.y > h() + 50) line.y = -50
+        if (line.x < -50 || line.x > w() + 50 || line.y < -50 || line.y > h() + 50) {
+          line.x = line.x < -50 ? w() + 50 : line.x > w() + 50 ? -50 : line.x
+          line.y = line.y < -50 ? h() + 50 : line.y > h() + 50 ? -50 : line.y
+          line.points.push(null as any)
+        }
 
         if (line.points.length > 2) {
-          ctx.beginPath()
-          ctx.strokeStyle = line.color
-          ctx.lineWidth = line.width
-          ctx.lineCap = 'round'
-          ctx.lineJoin = 'round'
+          const len = line.points.length
+          const fadeIn = Math.min(len, 60)
+          const fadeOut = Math.min(len, 60)
+          const baseAlpha = parseFloat(line.color.match(/[\d.]+\)$/)![0])
 
-          ctx.moveTo(line.points[0].x, line.points[0].y)
-          for (let j = 1; j < line.points.length - 1; j++) {
-            const xc = (line.points[j].x + line.points[j + 1].x) / 2
-            const yc = (line.points[j].y + line.points[j + 1].y) / 2
-            ctx.quadraticCurveTo(line.points[j].x, line.points[j].y, xc, yc)
+          for (let j = 1; j < len - 1; j++) {
+            const prev = line.points[j - 1]
+            const curr = line.points[j]
+            const next = line.points[j + 1]
+            if (!prev || !curr || !next) continue
+
+            let alpha = 1
+            if (j < fadeIn) alpha = j / fadeIn
+            if (j > len - 1 - fadeOut) alpha = Math.min(alpha, (len - 1 - j) / fadeOut)
+
+            ctx.beginPath()
+            ctx.strokeStyle = line.color.replace(/[\d.]+\)$/, (alpha * baseAlpha) + ')')
+            ctx.lineWidth = line.width
+            ctx.lineCap = 'round'
+            ctx.lineJoin = 'round'
+
+            const xc = (curr.x + next.x) / 2
+            const yc = (curr.y + next.y) / 2
+            ctx.moveTo((prev.x + curr.x) / 2, (prev.y + curr.y) / 2)
+            ctx.quadraticCurveTo(curr.x, curr.y, xc, yc)
+            ctx.stroke()
           }
-          ctx.stroke()
         }
       }
 
+      ctx.restore()
       animId = requestAnimationFrame(draw)
     }
 
@@ -116,7 +148,6 @@ export default function Home() {
 
   return (
     <>
-      <GenerativeBackground />
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 md:py-24">
         {/* Hero */}
         <div className="mb-20 animate-fade-in">
