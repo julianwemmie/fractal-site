@@ -7,31 +7,37 @@ export default {
   theme: {
     extend: {
       colors: {
+        'paper': {
+          100: '#F2F0EB',
+          200: '#E8E6E1',
+          300: '#DEDCD7',
+        },
+        'ink': {
+          900: '#1C1C1B',
+          800: '#2A2A29',
+          700: '#555555',
+        },
         'forest': {
           900: '#1a2e19',
           800: '#2d4a2b',
           700: '#3d5f3a',
           600: '#4d7449',
         },
-        'sage': {
-          500: '#7d8471',
-          400: '#9a9f8d',
-          300: '#b7baa9',
+        'clay': {
+          500: '#C9A690',
+          400: '#D4B8A5',
+          300: '#DFCABA',
         },
-        'olive': {
-          500: '#a4ac86',
-          400: '#b8be9f',
-          300: '#ccd0b8',
-        },
-        'ivory': {
-          100: '#faf9f6',
-          200: '#f5f4f0',
-          300: '#eeedea',
+        'stone': {
+          500: '#A8B8B2',
+          400: '#BCC9C4',
+          300: '#D0DCD9',
         },
       },
       fontFamily: {
         'serif': ['Playfair Display', 'Georgia', 'serif'],
         'sans': ['Source Sans 3', 'system-ui', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace'],
       },
     },
   },

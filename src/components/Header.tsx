@@ -9,14 +9,14 @@ export default function Header() {
   }
 
   return (
-    <header className="py-6 md:py-8">
+    <header className="py-6 md:py-8 border-b border-ink-900/10">
       <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
         <Link
           to="/"
           className="group flex items-center gap-3"
         >
           <svg
-            className="w-8 h-8 transition-transform duration-300 group-hover:rotate-12"
+            className="w-7 h-7 transition-transform duration-300 group-hover:rotate-12"
             viewBox="0 0 32 32"
             fill="none"
           >
@@ -26,11 +26,11 @@ export default function Header() {
             />
             <path
               d="M16 16C16 20 16 28 16 28C24 28 28 24 26 16C24 8 16 4 16 4C16 4 16 12 16 16Z"
-              className="fill-sage-500/60"
+              className="fill-stone-500/60"
             />
             <path
               d="M16 28C16 28 16 20 16 16"
-              className="stroke-olive-500"
+              className="stroke-clay-500"
               strokeWidth="1.5"
               strokeLinecap="round"
             />
@@ -46,7 +46,7 @@ export default function Header() {
             className={`text-sm tracking-wide transition-colors duration-200 ${
               isActive('/') && location.pathname === '/'
                 ? 'text-forest-800 font-medium'
-                : 'text-sage-500 hover:text-forest-800'
+                : 'text-ink-700 hover:text-forest-800'
             }`}
           >
             Home
@@ -56,7 +56,7 @@ export default function Header() {
             className={`text-sm tracking-wide transition-colors duration-200 ${
               isActive('/blog')
                 ? 'text-forest-800 font-medium'
-                : 'text-sage-500 hover:text-forest-800'
+                : 'text-ink-700 hover:text-forest-800'
             }`}
           >
             Blog
