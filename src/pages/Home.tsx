@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import { blogPosts } from '../data/posts'
 
-export function GenerativeBackground() {
+function GenerativeBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -13,17 +13,22 @@ export function GenerativeBackground() {
 
     const resize = () => {
       const dpr = window.devicePixelRatio || 1
-      canvas.width = window.innerWidth * dpr
-      canvas.height = window.innerHeight * dpr
+      const pageW = document.documentElement.scrollWidth
+      const pageH = Math.max(document.documentElement.scrollHeight, window.innerHeight)
+      canvas.style.height = pageH + 'px'
+      canvas.width = pageW * dpr
+      canvas.height = pageH * dpr
       ctx.scale(dpr, dpr)
     }
     resize()
     window.addEventListener('resize', resize)
+    const ro = new ResizeObserver(resize)
+    ro.observe(document.documentElement)
 
-    const w = () => window.innerWidth
-    const h = () => window.innerHeight
+    const w = () => document.documentElement.scrollWidth
+    const h = () => Math.max(document.documentElement.scrollHeight, window.innerHeight)
 
-    const lines: { x: number; y: number; vx: number; vy: number; color: string; width: number; phase: number; curl: number; oscillate: number; points: { x: number; y: number }[] }[] = []
+    const lines: { x: number; y: number; vx: number; vy: number; color: string; width: number; phase: number; curl: number; oscillate: number; points: ({ x: number; y: number } | null)[] }[] = []
 
     const colors = [
       'rgba(45, 74, 43, 0.10)',
@@ -60,15 +65,12 @@ export function GenerativeBackground() {
 
     const draw = () => {
       ctx.clearRect(0, 0, w(), h())
-      ctx.save()
-      ctx.translate(-window.scrollX, -window.scrollY)
       t += 0.001
 
       for (const line of lines) {
         const angle = noise(line.x, line.y, t, line.phase) * Math.PI * 2
         line.vx += Math.cos(angle) * 0.008
         line.vy += Math.sin(angle) * 0.008
-        // Gentle perpendicular curl for broad sweeping curves
         const speed = Math.sqrt(line.vx * line.vx + line.vy * line.vy)
         if (speed > 0.01) {
           const perpX = -line.vy / speed
@@ -88,7 +90,7 @@ export function GenerativeBackground() {
         if (line.x < -50 || line.x > w() + 50 || line.y < -50 || line.y > h() + 50) {
           line.x = line.x < -50 ? w() + 50 : line.x > w() + 50 ? -50 : line.x
           line.y = line.y < -50 ? h() + 50 : line.y > h() + 50 ? -50 : line.y
-          line.points.push(null as any)
+          line.points.push(null)
         }
 
         if (line.points.length > 2) {
@@ -122,7 +124,6 @@ export function GenerativeBackground() {
         }
       }
 
-      ctx.restore()
       animId = requestAnimationFrame(draw)
     }
 
@@ -131,14 +132,15 @@ export function GenerativeBackground() {
     return () => {
       cancelAnimationFrame(animId)
       window.removeEventListener('resize', resize)
+      ro.disconnect()
     }
   }, [])
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none"
-      style={{ width: '100vw', height: '100vh', zIndex: 0 }}
+      className="absolute inset-0 w-full pointer-events-none"
+      style={{ zIndex: 0 }}
     />
   )
 }
