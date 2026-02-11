@@ -13,7 +13,7 @@ export default function BlogPost() {
         <h1 className="font-serif text-3xl text-forest-800 mb-4">
           Post not found
         </h1>
-        <p className="text-sage-500 mb-8">
+        <p className="text-ink-700 mb-8">
           The post you're looking for doesn't exist.
         </p>
         <Link
@@ -44,7 +44,7 @@ export default function BlogPost() {
       {/* Back link */}
       <Link
         to="/blog"
-        className="inline-flex items-center gap-2 text-sage-500 hover:text-forest-800 transition-colors mb-8 animate-fade-in"
+        className="inline-flex items-center gap-2 text-ink-700 hover:text-forest-800 transition-colors mb-8 animate-fade-in"
       >
         <svg
           className="w-4 h-4"
@@ -64,7 +64,7 @@ export default function BlogPost() {
 
       {/* Header */}
       <header className="mb-12 animate-fade-in-delay-1">
-        <time className="text-sm text-sage-500">{post.date}</time>
+        <time className="text-sm text-ink-700 font-mono">{post.date}</time>
         <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-forest-800 mt-3 leading-tight">
           {post.title}
         </h1>
@@ -78,8 +78,8 @@ export default function BlogPost() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-16 pt-8 border-t border-olive-400/30 animate-fade-in-delay-3">
-        <p className="text-sage-500 text-sm">
+      <footer className="mt-16 pt-8 border-t border-clay-400/30 animate-fade-in-delay-3">
+        <p className="text-ink-700 text-sm">
           Thanks for reading! Feel free to{' '}
           <a
             href="mailto:hello@julianwemmie.com"
