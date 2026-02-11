@@ -148,6 +148,7 @@ export default function Home() {
 
   return (
     <>
+      <GenerativeBackground />
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 md:py-24">
         {/* Hero */}
         <div className="mb-20 animate-fade-in">
